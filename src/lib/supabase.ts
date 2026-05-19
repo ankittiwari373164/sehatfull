@@ -10,6 +10,21 @@ if (!supabaseUrl || !supabaseKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
+// Product type definition
+export type Product = {
+  id: string
+  name: string
+  slug: string
+  description: string | null
+  price: number
+  category: string
+  stock: number
+  sku: string | null
+  weight: string
+  created_at: string
+  updated_at: string
+}
+
 // Re-export types for use throughout the app
 export type Database = {
   public: {
