@@ -55,7 +55,7 @@ export default function CheckoutPage() {
 
       // Pre-fill email
       if (user.email) {
-        setFormData(prev => ({ ...prev, email: user.email }))
+        setFormData(prev => ({ ...prev, email: user.email || '' }))
       }
 
       // Load payment settings and Razorpay script
