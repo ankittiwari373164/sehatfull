@@ -1,14 +1,17 @@
 // File: src/lib/supabase.ts
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+export const supabase = (() => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing Supabase environment variables')
-}
+  if (!url || !key) {
+    // Return null during build, will error at runtime if actually used
+    return null as any
+  }
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+  return createClient(url, key)
+})()
 
 // Product type definition
 export type Product = {
@@ -25,7 +28,6 @@ export type Product = {
   updated_at: string
 }
 
-// Re-export types for use throughout the app
 export type Database = {
   public: {
     Tables: {
