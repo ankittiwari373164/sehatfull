@@ -3,14 +3,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.SUPABASE_SERVICE_KEY || ''
-)
+function getSupabaseClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!url || !key) {
+    throw new Error('Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY')
+  }
+
+  return createClient(url, key)
+}
 
 export async function POST(request: NextRequest) {
   try {
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = await request.json()
+
+    // Create Supabase client inside the function (runtime, not build time)
+    const supabase = getSupabaseClient()
 
     // Get Razorpay secret from database
     const { data: settingsData } = await supabase
