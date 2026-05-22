@@ -5,9 +5,9 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'YUMMIGO - Healthy Snacking for the On-the-Go Generation',
-  description: 'Premium dry fruit mixes offering perfect balance of taste, nutrition, and convenience. Shop our six signature SKUs for every moment of your day.',
-  keywords: 'healthy snacks, dry fruits, nuts, trail mix, workout snacks, travel snacks',
+  title: 'SehatFull Foods - Takmeeli Talbeena & Healthy Superfoods',
+  description: 'Premium Takmeeli Talbeena and healthy superfoods. 100% natural, Sunnah-inspired nutrition for the whole family.',
+  keywords: 'talbeena, takmeeli talbeena, healthy foods, sunnah foods, barley, superfoods, sehatfull',
 }
 
 export default function RootLayout({
